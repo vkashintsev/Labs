@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String args[])  {
-        SortingAlgorithm sort = new SelectionSort();
+        SortingAlgorithm sort = new HeapSort();
         ArrayList<Integer> arrayAsc = new ArrayList<>(Arrays.asList(1,4,3,2,6,7,8,4,2,1));
         ArrayList<Integer> arrayDesc = new ArrayList<>(Arrays.asList(1,4,3,2,6,7,8,4,2,1));
         sort.sortAscending(arrayAsc);
