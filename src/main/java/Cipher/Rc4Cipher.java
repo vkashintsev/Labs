@@ -9,7 +9,7 @@ public class Rc4Cipher extends Cipher {
     }
 
     private String compute(String text) {
-        String key =  this.key.getKey();
+        String key =  ((SymmetricKey)this.key).getKey();
         StringBuffer result = new StringBuffer();
         int x, y, j = 0;
         int[] perm = new int[256];
@@ -51,6 +51,7 @@ public class Rc4Cipher extends Cipher {
                     result += arr[i];
                 }
                 writer.write(compute(result));
+                result = "";
             }
             reader.close();
             writer.close();
