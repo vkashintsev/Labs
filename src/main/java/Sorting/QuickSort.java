@@ -5,20 +5,20 @@ import java.util.List;
 public class QuickSort extends SortingAlgorithm{
 
     @Override
-    public <T extends Comparable> void sortAscending(List<T> values) {
+    public void sortAscending(List<Comparable> values) {
         quickSort(values, 0, values.size()-1, true);
     }
 
     @Override
-    public <T extends Comparable> void sortDescending(List<T> values) {
+    public void sortDescending(List<Comparable> values) {
         quickSort(values, 0, values.size()-1, false);
     }
 
-    private static <T extends Comparable> void quickSort(List<T> values, int low, int high, boolean ascending) {
+    private static void quickSort(List<Comparable> values, int low, int high, boolean ascending) {
         if (values.size() == 0 || low >= high)
             return;
         int i = low, j = high;
-        T middle = values.get(low + (high - low) / 2);
+        Comparable middle = values.get(low + (high - low) / 2);
         while (i <= j) {
             while ((!ascending ? -1 : 1) * values.get(i).compareTo(middle) < 0) {
                 i++;

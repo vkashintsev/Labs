@@ -4,7 +4,7 @@ import java.util.List;
 
 public class BubbleSort extends SortingAlgorithm {
     @Override
-    public <T extends Comparable> void sortAscending(List<T> values) {
+    public void sortAscending(List<Comparable> values) {
         boolean flag = true;
         int right = values.size();
         while (flag) {
@@ -20,7 +20,7 @@ public class BubbleSort extends SortingAlgorithm {
     }
 
     @Override
-    public <T extends Comparable> void sortDescending(List<T> values) {
+    public void sortDescending(List<Comparable> values) {
         boolean flag = true;
         int right = values.size();
         while (flag) {

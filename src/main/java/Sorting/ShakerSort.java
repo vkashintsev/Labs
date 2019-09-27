@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ShakerSort extends SortingAlgorithm {
     @Override
-    public <T extends Comparable> void sortAscending(List<T> values) {
+    public void sortAscending(List<Comparable> values) {
         int left=0;
         int right=values.size()-1;
         while (left < right) {
@@ -24,7 +24,7 @@ public class ShakerSort extends SortingAlgorithm {
     }
 
     @Override
-    public <T extends Comparable> void sortDescending(List<T> values) {
+    public void sortDescending(List<Comparable> values) {
         int left=0;
         int right=values.size()-1;
         while (left < right) {
