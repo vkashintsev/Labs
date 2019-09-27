@@ -1,20 +1,15 @@
-import DataStructure.BinaryTree;
-import DataStructure.TreeVisitor;
-import Sorting.*;
-import Sorting.SortingAlgorithm;
+import Cipher.Cipher;
+import Cipher.Key.SymmetricKey;
+import Cipher.Rc4Cipher;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String args[])  {
-        SortingAlgorithm sort = new TreeSort();
-        ArrayList<Comparable> arrayAsc = new ArrayList<>(Arrays.asList(1,4,3,2,6,7,8,4,2,1));
-        ArrayList<Comparable> arrayDesc = new ArrayList<>(Arrays.asList(1,4,3,2,6,7,8,4,2,1));
-        sort.sortAscending(arrayAsc);
-        sort.sortDescending(arrayDesc);
-        SortingAlgorithm.printArray(arrayAsc);
-        SortingAlgorithm.printArray(arrayDesc);
+    public static void main(String args[]) throws IOException {
+        Cipher cipher = new Rc4Cipher(new SymmetricKey("qwerty"));
+
+        cipher.encrypt("src/Files/input/input.txt", "src/Files/output/output.txt");
+        cipher.encrypt("src/Files/output/output.txt", "src/Files/output/output (1).txt");
     }
 
 
