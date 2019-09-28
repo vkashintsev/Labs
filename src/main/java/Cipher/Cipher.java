@@ -3,28 +3,20 @@ package Cipher;
 import Cipher.Key.Key;
 
 import java.io.*;
-import java.math.BigInteger;
 
 public abstract class Cipher {
     protected Key key;
-    public abstract BigInteger[] encrypt(String text);
-    public abstract String decrypt(BigInteger[] ciphertext);
+    public abstract String encrypt(String message);
+    public abstract String decrypt(String message);
 
     public void encrypt(String input, String output){
-        BufferedReader reader;
-        BufferedWriter writer;
         try {
-            reader = new BufferedReader(new FileReader(input));
-            writer = new BufferedWriter(new FileWriter(output));
-            String result;
+            BufferedReader reader = new BufferedReader(new FileReader(input));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(output));
             while (reader.ready()) {
-                result = reader.readLine();
-                BigInteger[] ciphertext = encrypt(result);
-                StringBuffer buffer = new StringBuffer();
-                for (int i = 0; i < ciphertext.length; i++) {
-                    buffer.append(ciphertext[i].toString(16).toUpperCase() + " ");
-                }
-                writer.write(buffer.toString());
+                String result = reader.readLine();
+                String ciphertext = encrypt(result);
+                writer.write(ciphertext);
                 writer.newLine();
             }
             writer.close();
@@ -45,12 +37,7 @@ public abstract class Cipher {
                     writer.newLine();
                     continue;
                 }
-
-                String[] words = text.trim().split("\\s+");
-                BigInteger[] ciphertext = new BigInteger[words.length];
-                for (int i = 0; i < words.length; i++)
-                    ciphertext[i] = new BigInteger(words[i], 16);
-                String recoveredPlaintext = decrypt(ciphertext);
+                String recoveredPlaintext = decrypt(text);
                 writer.write(recoveredPlaintext);
                 writer.newLine();
             }
@@ -72,20 +59,5 @@ public abstract class Cipher {
         this.key = key;
      }
 
-    protected BigInteger[] textToIntArray(String text){
-        BigInteger[] result = new BigInteger[text.length()];
-        for (int i = 0; i < text.length(); i++){
-            result[i] = BigInteger.valueOf((int)text.charAt(i));
-        }
-        return result;
-    }
-
-    protected String intArrayToText(BigInteger[] ciphertext) {
-        StringBuffer result = new StringBuffer();
-        for (int i = 0; i < ciphertext.length; i++) {
-            result.append( (char) (Integer.parseInt(ciphertext[i].toString())));
-        }
-        return result.toString();
-    }
 
 }
