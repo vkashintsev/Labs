@@ -1,12 +1,13 @@
 package Cipher;
 import Cipher.Key.SymmetricKey;
 
-import java.io.*;
+import java.math.BigInteger;
 
 public class Rc4Cipher extends Cipher {
     public Rc4Cipher(SymmetricKey key) {
         super(key);
     }
+
 
     private String compute(String text) {
         String key =  ((SymmetricKey)this.key).getKey();
@@ -33,37 +34,20 @@ public class Rc4Cipher extends Cipher {
             perm[j] = x;
             result.append((char)( ((int) text.charAt(i)) ^ perm[(perm[y] + perm[j]) % 256]));
         }
+
         return result.toString();
     }
 
 
-
     @Override
-    public void encrypt(String input, String output) {
-        char[] arr = new char[256];
-        String result = "";
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(input));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(output));
-            int charsRead;
-            while ((charsRead = reader.read(arr)) != -1) {
-                for (int i = 0; i < charsRead; i++) {
-                    result += arr[i];
-                }
-                writer.write(compute(result));
-                result = "";
-            }
-            reader.close();
-            writer.close();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
+    public BigInteger[] encrypt(String text) {
+        return textToIntArray(compute(text));
     }
 
     @Override
-    public void decrypt(String input, String output) {
-        encrypt(input,output);
+    public String decrypt(BigInteger[] ciphertext) {
+        return compute(intArrayToText(ciphertext));
     }
+
 }
 
