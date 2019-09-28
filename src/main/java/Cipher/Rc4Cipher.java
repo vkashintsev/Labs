@@ -3,7 +3,7 @@ import Cipher.Key.SymmetricKey;
 import Maths.Converter;
 
 
-public class Rc4Cipher extends Cipher {
+public class Rc4Cipher extends StreamCipher {
     public Rc4Cipher(SymmetricKey key) {
         super(key);
     }
@@ -40,15 +40,15 @@ public class Rc4Cipher extends Cipher {
 
 
     @Override
-    public String encrypt(String message) {
-        byte[] bytes = compute(message.getBytes());
-        return Converter.byteToHex(bytes);
+    public byte[] encrypt(byte[] message) {
+        byte[] bytes = compute(message);
+        return bytes;
     }
 
     @Override
-    public String decrypt(String message) {
-        byte[] decrypted = compute( Converter.hexToByte(message));
-        return Converter.byteToText(decrypted);
+    public byte[] decrypt(byte[] message) {
+        byte[] decrypted = compute( message);
+        return decrypted;
     }
 
 }

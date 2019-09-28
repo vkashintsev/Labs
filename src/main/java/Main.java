@@ -8,8 +8,8 @@ import java.math.BigInteger;
 
 public class Main {
     public static void main(String args[])   {
-        //Cipher cipher = new Rc4Cipher(new SymmetricKey("512"));
-        Cipher cipher = new RSACipher(new RSAKey(512));
+        Cipher cipher = new Rc4Cipher(new SymmetricKey("512"));
+       // Cipher cipher = new RSACipher(new RSAKey(512));
         cipher.encrypt("src/Files/input/input.txt", "src/Files/output/output.txt");
         cipher.decrypt("src/Files/output/output.txt", "src/Files/output/output (1).txt");
      /*   Cipher cipher = new Rc4Cipher(new SymmetricKey("qwerty"));
