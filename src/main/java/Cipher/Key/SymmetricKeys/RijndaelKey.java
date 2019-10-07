@@ -1,4 +1,4 @@
-package Cipher.Key;
+package Cipher.Key.SymmetricKeys;
 
 import static Cipher.Constants.RijndaelConstants.rCon;
 import static Cipher.Constants.RijndaelConstants.sBox;

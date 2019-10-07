@@ -1,11 +1,12 @@
-package Cipher.Key;
+package Cipher.Key.PublicKeys;
 
+import Cipher.Key.Key;
 import javafx.util.Pair;
 
 import java.math.BigInteger;
 import java.util.Random;
 
-public class RSAKey implements Key{
+public class RSAKey extends PublicKey {
     private Pair<BigInteger, BigInteger> publicKey;
     private Pair<BigInteger, BigInteger> privateKey;
     int primeSize;

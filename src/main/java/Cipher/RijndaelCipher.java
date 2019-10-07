@@ -1,11 +1,10 @@
 package Cipher;
 
-import Cipher.Key.RijndaelKey;
+import Cipher.Key.SymmetricKeys.RijndaelKey;
 
 import static Cipher.Constants.RijndaelConstants.*;
 
 public class RijndaelCipher extends SymmetricCipher {
-
 
     public RijndaelCipher(RijndaelKey key) {
         super(key);
@@ -65,7 +64,7 @@ public class RijndaelCipher extends SymmetricCipher {
             state[i] ^= Byte.toUnsignedInt((byte) roundkey[i]);
         }
     }
-   //#region SubBytes
+    //#region SubBytes
     private void subBytes(char[] state) {
         for (int i = 0; i < state.length; i++) {
             state[i] = sBox[state[i]];

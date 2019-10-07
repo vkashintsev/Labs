@@ -1,9 +1,11 @@
-package Cipher.Key;
+package Cipher.Key.SymmetricKeys;
+
+import Cipher.Key.Key;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class SymmetricKey implements Key{
+public class SymmetricKey implements Key {
     protected char[] key;
 
     public SymmetricKey(char[] key){

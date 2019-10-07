@@ -1,5 +1,5 @@
 package Cipher;
-import Cipher.Key.RSAKey;
+import Cipher.Key.PublicKeys.RSAKey;
 
 import java.math.BigInteger;
 

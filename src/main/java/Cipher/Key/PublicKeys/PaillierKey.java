@@ -1,11 +1,12 @@
-package Cipher.Key;
+package Cipher.Key.PublicKeys;
 
+import Cipher.Key.Key;
 import Maths.BigIntegerGenerator;
 import javafx.util.Pair;
 
 import java.math.BigInteger;
 
-public class PaillierKey implements Key {
+public class PaillierKey extends PublicKey {
     private Pair<BigInteger, BigInteger> publicKey;
     private Pair<BigInteger, BigInteger> privateKey;
 

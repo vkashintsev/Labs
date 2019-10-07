@@ -1,10 +1,10 @@
 package Cipher;
-import Cipher.Key.SymmetricKey;
-import Maths.Converter;
+import Cipher.Key.SymmetricKeys.Rc4Key;
+import Cipher.Key.SymmetricKeys.SymmetricKey;
 
 
 public class Rc4Cipher extends SymmetricCipher {
-    public Rc4Cipher(SymmetricKey key) {
+    public Rc4Cipher(Rc4Key key) {
         super(key);
     }
 

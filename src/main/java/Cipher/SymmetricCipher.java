@@ -1,7 +1,6 @@
 package Cipher;
 
-import Cipher.Key.Key;
-import Cipher.Key.SymmetricKey;
+import Cipher.Key.SymmetricKeys.SymmetricKey;
 import Maths.Converter;
 
 import java.io.*;
