@@ -1,12 +1,14 @@
 package Cipher;
 
 import Cipher.Key.Key;
+import Cipher.Key.SymmetricKey;
 import Maths.Converter;
 
 import java.io.*;
+import java.util.Arrays;
 
-public abstract class StreamCipher extends Cipher {
-    public StreamCipher(Key key) {
+public abstract class SymmetricCipher extends Cipher {
+    public SymmetricCipher(SymmetricKey key) {
         super(key);
     }
     public abstract byte[] encrypt(byte[] message);
@@ -19,8 +21,11 @@ public abstract class StreamCipher extends Cipher {
             BufferedWriter writer = new BufferedWriter(new FileWriter(output));
             while (reader.ready()) {
                 String result = reader.readLine();
-                String ciphertext =  Converter.byteToHex(encrypt(result.getBytes()));
-                writer.write(ciphertext);
+                for (int i = 0; i < result.getBytes().length; i+= 16){
+                    byte[] tmp = Arrays.copyOfRange(result.getBytes(), i, i+16);
+                    String ciphertext =  Converter.byteToHex(encrypt(tmp));
+                    writer.write(ciphertext);
+                }
                 writer.newLine();
             }
             writer.close();
@@ -42,8 +47,12 @@ public abstract class StreamCipher extends Cipher {
                     continue;
                 }
                 byte[] bytes = Converter.hexToByte(text);
-                String recoveredPlaintext = Converter.byteToText(decrypt(bytes));
-                writer.write(recoveredPlaintext);
+                for (int i = 0; i < bytes.length; i+= 16){
+                    byte[] tmp = Arrays.copyOfRange(bytes, i, i+16);
+                    String recoveredPlaintext = Converter.byteToText(decrypt(tmp));
+                    writer.write(recoveredPlaintext);
+                }
+
                 writer.newLine();
             }
             writer.close();

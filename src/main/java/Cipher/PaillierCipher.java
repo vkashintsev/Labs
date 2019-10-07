@@ -1,12 +1,9 @@
 package Cipher;
 
-import Cipher.Key.Key;
 import Cipher.Key.PaillierKey;
 import Maths.BigIntegerGenerator;
-import javafx.util.Pair;
 
 import java.math.BigInteger;
-import java.util.Random;
 
 public class PaillierCipher extends AsymmetricCipher {
 
@@ -32,7 +29,6 @@ public class PaillierCipher extends AsymmetricCipher {
         PaillierKey key = (PaillierKey) getKey();
         BigInteger g = key.getPublicKey().getValue(), n = key.getPublicKey().getKey();
         BigInteger nsquare = n.multiply(n), lambda = key.getPrivateKey().getKey();
-        //privateKey = new Pair<>(lambda, mu);
         BigInteger[] decrypted = new BigInteger[message.length];
         BigInteger u = g.modPow(lambda, nsquare).subtract(BigInteger.ONE).divide(n).modInverse(n);
         for(int i = 0; i < message.length; i++)

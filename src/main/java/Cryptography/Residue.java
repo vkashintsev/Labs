@@ -64,14 +64,15 @@ public class Residue implements Algorithm {
 
     @Override
     public void start(int n) {
-        Residue a = new Residue(23, 25);
-        Residue b = new Residue(4, 25);
+        Residue a = new Residue(23, 11);
+        Residue b = new Residue(7, 11);
         Residue pow = Residue.pow(b, 2);
         try {
             System.out.println(String.format("%s + %s = %s", a, b, Residue.sum(a, b)));
             System.out.println(String.format("%s * %s = %s", a, b, Residue.mul(a, b)));
             System.out.println(String.format("%s^%d = %s", b, 2, pow));
             System.out.println(String.format("Приведенная система вычетов для числа %d и модуля %d: %s", pow.n, pow.m, Residue.reduce(pow))); //*/
+
         } catch (ResidueException e) {
             e.printStackTrace();
         }

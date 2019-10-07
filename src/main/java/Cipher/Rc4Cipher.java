@@ -3,7 +3,7 @@ import Cipher.Key.SymmetricKey;
 import Maths.Converter;
 
 
-public class Rc4Cipher extends StreamCipher {
+public class Rc4Cipher extends SymmetricCipher {
     public Rc4Cipher(SymmetricKey key) {
         super(key);
     }
