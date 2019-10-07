@@ -5,7 +5,6 @@ import Cipher.Key.RijndaelKey;
 import static Cipher.Constants.RijndaelConstants.*;
 
 public class RijndaelCipher extends SymmetricCipher {
-    private RijndaelKey key;
 
 
     public RijndaelCipher(RijndaelKey key) {
@@ -14,6 +13,7 @@ public class RijndaelCipher extends SymmetricCipher {
 
     @Override
     public byte[] encrypt(byte[] message) {
+        RijndaelKey key = (RijndaelKey) getKey();
         char[] state = new char[message.length];
         int roundsCount = key.getRoundsCount();
         for (int i = 0; i < message.length; i++)
@@ -35,6 +35,7 @@ public class RijndaelCipher extends SymmetricCipher {
     }
     @Override
     public byte[] decrypt(byte[] message) {
+        RijndaelKey key = (RijndaelKey) getKey();
         char[] state = new char[message.length];
         int roundsCount = key.getRoundsCount();
         for (int i = 0; i < message.length; i++)

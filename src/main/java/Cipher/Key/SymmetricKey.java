@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class SymmetricKey implements Key{
-    private char[] key;
+    protected char[] key;
 
     public SymmetricKey(char[] key){
         this.key = key;

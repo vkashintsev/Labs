@@ -4,7 +4,6 @@ import static Cipher.Constants.RijndaelConstants.rCon;
 import static Cipher.Constants.RijndaelConstants.sBox;
 
 public class RijndaelKey extends SymmetricKey {
-    private char[] key;
     private char[][] roundKeys;
     private int roundsCount;
 
@@ -14,14 +13,15 @@ public class RijndaelKey extends SymmetricKey {
         this.key = new char[md5Key.length];
         for (int i = 0; i < md5Key.length; i++)
             this.key[i] = (char) Byte.toUnsignedInt(md5Key[i]);
+        roundsCount =  (md5Key.length / 4 + 6);
+        roundKeys = new char[roundsCount][];
         createRoundKeys();
+
     }
 
 
 
     private void createRoundKeys() {
-        roundsCount =  (key.length / 4 + 6);
-        roundKeys = new char[roundsCount][];
         for (int i = 0; i < roundsCount; i++) {
             roundKeys[i] = new char[key.length];
             if (i == 0) {
@@ -56,6 +56,7 @@ public class RijndaelKey extends SymmetricKey {
                 }
             }
         }
+
     }
 
     public char[][] getRoundKeys() {

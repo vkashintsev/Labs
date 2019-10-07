@@ -10,7 +10,7 @@ public class Rc4Cipher extends SymmetricCipher {
 
 
     private byte[] compute(byte[] message) {
-        byte[] key =  ((SymmetricKey)this.key).getKey().getBytes();
+        char[] key =  ((SymmetricKey)this.key).getKey();
         byte[] result = new byte[message.length];
         int x, y, j = 0;
         int[] perm = new int[256];
