@@ -48,7 +48,7 @@ public class GF256 {
     }
 
 
-    public long mulByMod(int firstOperand, int secondOperand, int modulo) {
+    public static long mulByMod(int firstOperand, int secondOperand, int modulo) {
         long result = 0;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -58,7 +58,7 @@ public class GF256 {
         return divisionRemainder(result, modulo);
     }
 
-    private long divisionRemainder(long firstOperand, int secondOperand) {
+    private static long divisionRemainder(long firstOperand, int secondOperand) {
         if (firstOperand == 0) {
             return 0;
         }
