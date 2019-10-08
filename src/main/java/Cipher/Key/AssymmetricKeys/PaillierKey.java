@@ -1,12 +1,11 @@
-package Cipher.Key.PublicKeys;
+package Cipher.Key.AssymmetricKeys;
 
-import Cipher.Key.Key;
 import Maths.BigIntegerGenerator;
 import javafx.util.Pair;
 
 import java.math.BigInteger;
 
-public class PaillierKey extends PublicKey {
+public class PaillierKey extends AssymmetricKey {
     private Pair<BigInteger, BigInteger> publicKey;
     private Pair<BigInteger, BigInteger> privateKey;
 

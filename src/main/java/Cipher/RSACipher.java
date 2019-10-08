@@ -1,11 +1,11 @@
 package Cipher;
-import Cipher.Key.PublicKeys.RSAKey;
+import Cipher.Key.AssymmetricKeys.RSAKey;
 
 import java.math.BigInteger;
 
 public class RSACipher extends AsymmetricCipher {
-    BigInteger N;
-    BigInteger E, D;
+    private BigInteger N;
+    private BigInteger E, D;
 
     public RSACipher(RSAKey key) {
         super(key);

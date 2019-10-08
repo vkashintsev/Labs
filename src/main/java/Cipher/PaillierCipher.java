@@ -1,6 +1,6 @@
 package Cipher;
 
-import Cipher.Key.PublicKeys.PaillierKey;
+import Cipher.Key.AssymmetricKeys.PaillierKey;
 import Maths.BigIntegerGenerator;
 
 import java.math.BigInteger;

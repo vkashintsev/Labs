@@ -16,16 +16,15 @@ public abstract class SymmetricCipher extends Cipher {
     @Override
     public void encrypt(String input, String output){
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(input));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(output));
-            while (reader.ready()) {
-                String result = reader.readLine();
-                for (int i = 0; i < result.getBytes().length; i+= 16){
-                    byte[] tmp = Arrays.copyOfRange(result.getBytes(), i, i+16);
-                    String ciphertext =  Converter.byteToHex(encrypt(tmp));
-                    writer.write(ciphertext);
-                }
-                writer.newLine();
+            FileInputStream reader = new FileInputStream(input);
+            FileOutputStream writer = new FileOutputStream(output);
+            while (reader.available() > 0) {
+                byte[] tmp = new byte[16];
+                int i = reader.read(tmp);
+                if (i == 0)
+                    break;
+                byte[] ciphertext =  encrypt(tmp);
+                writer.write(ciphertext);
             }
             writer.close();
             reader.close();
@@ -37,22 +36,12 @@ public abstract class SymmetricCipher extends Cipher {
     @Override
     public void decrypt(String input, String output) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(input));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(output));
-            while (reader.ready()) {
-                String text = reader.readLine();
-                if (text.isEmpty()) {
-                    writer.newLine();
-                    continue;
-                }
-                byte[] bytes = Converter.hexToByte(text);
-                for (int i = 0; i < bytes.length; i+= 16){
-                    byte[] tmp = Arrays.copyOfRange(bytes, i, i+16);
-                    String recoveredPlaintext = Converter.byteToText(decrypt(tmp));
+            FileInputStream reader = new FileInputStream(input);
+            FileOutputStream writer = new FileOutputStream(output);
+            byte[] tmp = new byte[16];
+            while (reader.read(tmp)>0) {
+                    byte[] recoveredPlaintext = decrypt(tmp);
                     writer.write(recoveredPlaintext);
-                }
-
-                writer.newLine();
             }
             writer.close();
             reader.close();
